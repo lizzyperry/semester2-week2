@@ -8,4 +8,4 @@
 -- 3. Exit SQLite: .exit
 
 
--- write your sql code here
+-- You can use this to test your sql before you write it into your program.

@@ -32,7 +32,7 @@ def driver_workload(conn):
     pass
 
 
-def order_delivery_overview(conn):
+def delivery_lookup_by_id(conn, order_id):
     pass
 
 
@@ -112,7 +112,11 @@ def section_2_menu(conn):
         elif choice == "2":
             driver_workload(conn)
         elif choice == "3":
-            order_delivery_overview(conn)
+            order_id = input("Enter order ID: ").strip()
+            if not order_id.isdigit():
+                print("Please enter a valid integer order ID.")
+                continue
+            delivery_lookup_by_id(conn, int(order_id))
         elif choice == "0":
             break
         else:

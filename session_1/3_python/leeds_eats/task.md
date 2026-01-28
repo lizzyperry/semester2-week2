@@ -32,17 +32,20 @@ You should print out data in a clear and human-readible way - use linebreaks (`\
 - Number of deliveries completed
 
 
-7. Order delivery overview 
-- Order ID
-- Customer name
-- Driver name
-- Delivery date
+7. Order delivery Lookup - search for an individual order
+- search for an order by ID
+- customer name
+- order total
+- delivery date
+- driver
+
+
 
 ## Section 3 - Time-based Summaries
 
 8. Count the number of orders per order date.
 9. Count the number of deliveries per delivery date.
-10. Count customer signups per month.
+10. Count customer signups per month - you may need to do some python processing on this one!
 
 ## Section 4 - Performance and Rankings
 
