@@ -40,9 +40,16 @@ def search_for_student(db):
                 ON s.id=d.id
                 WHERE s.id=?
                 '''
+                "SELECT s.department_id, s.name, d.name
+                FROM Students s JOIN Department d
+                ON s.id=d.id
+                WHERE s.id=?"
     except:
-        query = '''
-                SELECT s.id, s.name, d.name
+        query = "SELECT s.id, s.name, d.name
+                FROM Students s JOIN Department d
+                ON s.department_id=d.id
+                WHERE s.name=?"
+                '''SELECT s.id, s.name, d.name
                 FROM Students s JOIN Department d
                 ON s.department_id=d.id
                 WHERE s.name=?
@@ -85,7 +92,10 @@ def view_courses(db):
             Courses c LEFT JOIN Department d
             ON c.id=d.id;
             '''
-    cursor = db.execute(query)
+            "SELECT c.id, c.name, c.semester, d.name FROM
+            Courses c LEFT JOIN Department d
+            ON c.id=d.id;"
+    cursor = db.execute(query) 
     for each in cursor:
         print(f"ID: {each[0]}\tName: {each[1]}\tSemester: {each[2]}\tDept: {each[3]}")
 
@@ -104,17 +114,27 @@ def view_student_by_course(db):
             student_id=s.id
             WHERE sc.course_id=?;
             '''
+            "SELECT s.name from
+            StudentCourses sc 
+            JOIN Students s ON
+            student_id=s.id
+            WHERE sc.course_id=?;"
     cursor = db.execute(query, (choice,))
     for student in cursor:
         print(f"Name: {student[0]}")
 
 
-# Have a go at writing this function!
+# Have a go at writing this function! 
 def review_student_numbers(db):
     '''
     Print the number of students registered for each course.    
     :param db: Database object to query
     '''
+    query = "SELECT c.name, COUNT(s.id) AS TotalStudents
+            FROM Courses c EFT JOIN StudentCourses sc
+            WHERE c.id = sc.course_id
+            GROUP BY c.id"
+    cursor = db.execute(query)
     pass
 
 def main():
